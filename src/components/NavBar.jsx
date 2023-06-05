@@ -17,7 +17,7 @@ const NavBar = () => {
     }, [location]);
 
   return (
-    <nav className="flex flex-col mx-32 mt-8">
+    <nav className="flex flex-col mx-32 pt-8 h-[208px]">
       <div className="flex justify-between">
         <NavLink to="/">
           <img className="w-[240px]" src={Logo} alt="Social Brothers Logo" />

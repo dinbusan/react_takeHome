@@ -5,7 +5,7 @@ import Blog from '../pages/Blog'
 
 const Body = () => {
   return (
-    <div className='bg-zinc-50 h-screen'>
+    <div className='bg-zinc-50'>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blog" element={<Blog />} />
