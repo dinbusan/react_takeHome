@@ -15,14 +15,14 @@ const Form = () => {
   };
 
   return (
-    <div className="bg-green-400 w-3/4 mx-auto">
-      <div className="bg-white w-[451px] h-[659px] pt-6 mt-16">
+    
+      <div className="bg-white pt-6">
         <form
           className="flex flex-col"
           onSubmit={handleSubmit(onSubmit)}
           action=""
         >
-          <div className="flex flex-col space-y-3 text-base mx-6 mx-auto">
+          <div className="flex flex-col text-sm mx-6">
             <h1 className="text-2xl font-semibold tracking-wide">
               Plaats een blog bericht
             </h1>
@@ -40,7 +40,7 @@ const Form = () => {
               type="text"
               placeholder="Geen titel"
               id="berichtnaam"
-              className="bg-neutral-50"
+              className="bg-neutral-50 italic"
             />
             <p>{errors.Name?.message}</p>
             <label className="text-xs" htmlFor="categorie">
@@ -49,7 +49,7 @@ const Form = () => {
             <select
               {...register("Categorie", { required: "Categorie is required" })}
               id="categorie"
-              className="bg-neutral-50"
+              className="bg-neutral-50 italic"
             >
               <option value="">Geen categorie</option>
               <option value="option1">Option 1</option>
@@ -64,7 +64,7 @@ const Form = () => {
               {...register("Image", { required: "Image is required" })}
               type="file"
               id="image"
-              className="bg-neutral-50"
+              className="bg-neutral-50 text-xs"
             />
             <p>{errors.Image?.message}</p>
             <label className="text-xs" htmlFor="bericht">
@@ -88,7 +88,7 @@ const Form = () => {
           </div>
         </form>
       </div>
-    </div>
+   
   );
 };
 

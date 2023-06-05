@@ -4,8 +4,17 @@
 
 input, select, textarea {
     height: 39px;
+    padding: 10px;
+    margin: 20px 0px;
+    
 }
 
 .form--btn{
     background: #F17623;
+}
+
+p {
+    font-size: 8px;
+    margin: 0px;
+    padding: 0px;
 }
