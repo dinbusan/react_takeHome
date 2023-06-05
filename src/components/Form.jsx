@@ -64,7 +64,8 @@ const Form = () => {
               {...register("Image", { required: "Image is required" })}
               type="file"
               id="image"
-              className="bg-neutral-50 text-xs"
+              className="bg-neutral-50"
+              
             />
             <p>{errors.Image?.message}</p>
             <label className="text-xs" htmlFor="bericht">
@@ -81,7 +82,7 @@ const Form = () => {
 
             <p>{errors.Bericht?.message}</p>
             <input
-              className="form--btn rounded-full text-white text-sm text-semibold w-52 mx-auto"
+              className="form--btn cursor-pointer active:scale-95 rounded-full text-white text-sm text-semibold w-52 mx-auto"
               type="submit"
               value="Bericht aanmaken"
             />

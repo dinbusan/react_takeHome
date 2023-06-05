@@ -10,11 +10,28 @@ input, select, textarea {
 }
 
 .form--btn{
-    background: #F17623;
+    background: #f17623;
+}
+
+.form--btn:hover{
+    background: #d96a1f;
+    transition: 0.3s;
 }
 
 p {
     font-size: 8px;
     margin: 0px;
     padding: 0px;
+}
+
+input[type="file"]::file-selector-button{
+    border-radius: 16px;
+    border: none;
+    background: #7D7D7D;
+    color: white;
+    font-size: 10px;
+    cursor: pointer;
+}
+input[type=file]{
+ color:transparent;
 }
