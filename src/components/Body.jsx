@@ -5,11 +5,13 @@ import Blog from '../pages/Blog'
 
 const Body = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/blog" element={<Blog />} />
-    </Routes>
-  )
+    <div className='bg-zinc-50'>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/blog" element={<Blog />} />
+      </Routes>
+    </div>
+  );
 }
 
 export default Body
