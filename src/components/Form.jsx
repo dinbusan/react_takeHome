@@ -60,7 +60,6 @@ const Form = () => {
             <label className="text-xs" htmlFor="image">
               Header afbeeling
             </label>
-
             <input
               {...register("Image", { required: "Image is required" })}
               type="file"
