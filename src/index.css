@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input, select, textarea {
+    height: 39px;
+}
+
+.form--btn{
+    background: #F17623;
+}
