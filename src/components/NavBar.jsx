@@ -17,24 +17,20 @@ const NavBar = () => {
     }, [location]);
 
   return (
-    <nav className="flex flex-col mx-32 pt-8 h-[208px]">
-      <div className="flex justify-between">
+    <nav className="flex flex-col h-[208px] bg-slate-500 text-lg">
+      <div className="flex mx-40 pt-8 justify-between text-white">
         <NavLink to="/">
           <img className="w-[240px]" src={Logo} alt="Social Brothers Logo" />
         </NavLink>
-        <ul className="space-x-5 decoration-underlineOrange underline-offset-8	">
+        <ul className="space-x-8 decoration-underlineOrange underline-offset-8	">
           <NavLink
-            className={({ isActive }) =>
-              isActive ? "underline" : ""
-            }
+            className={({ isActive }) => (isActive ? "underline" : "")}
             to="/"
           >
             Home
           </NavLink>
           <NavLink
-            className={({ isActive }) =>
-              isActive ? "underline" : ""
-            }
+            className={({ isActive }) => (isActive ? "underline" : "")}
             to="/blog"
           >
             Blog
