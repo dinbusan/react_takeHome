@@ -10,7 +10,7 @@ const NavBar = () => {
       const pathname = location.pathname;
       // Update activeLink based on the current route
       if (pathname === "/") {
-        setActiveLink("Home");
+        setActiveLink("");
       } else if (pathname === "/blog") {
         setActiveLink("Blog");
       }
@@ -22,15 +22,19 @@ const NavBar = () => {
         <NavLink to="/">
           <img className="w-[240px]" src={Logo} alt="Social Brothers Logo" />
         </NavLink>
-        <ul className="space-x-5">
+        <ul className="space-x-5 decoration-underlineOrange underline-offset-8	">
           <NavLink
-            className={({ isActive }) => (isActive ? "underline" : "")}
+            className={({ isActive }) =>
+              isActive ? "underline" : ""
+            }
             to="/"
           >
             Home
           </NavLink>
           <NavLink
-            className={({ isActive }) => (isActive ? "underline" : "")}
+            className={({ isActive }) =>
+              isActive ? "underline" : ""
+            }
             to="/blog"
           >
             Blog

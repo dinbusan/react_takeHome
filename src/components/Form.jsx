@@ -84,7 +84,7 @@ const Form = () => {
             <p>{errors.Bericht?.message}</p>
           </div>
           <input
-            className="form--btn cursor-pointer active:scale-95 rounded-full text-white font-semibold text-xs w-52 justify-center mx-auto"
+            className="bg-orange hover:bg-hoverOrange cursor-pointer active:scale-95 rounded-full text-white font-semibold text-xs w-52 justify-center mx-auto"
             type="submit"
             value="Bericht aanmaken"
           />

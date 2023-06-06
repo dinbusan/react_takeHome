@@ -17,14 +17,14 @@ input, select, textarea {
     margin-top: 8px;
 }
 
-.form--btn{
+/* .form--btn{
     background: #f17623;
 }
 
 .form--btn:hover{
     background: #d96a1f;
     transition: 0.3s;
-}
+} */
 
 p {
     font-size: 8px;
