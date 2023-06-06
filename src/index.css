@@ -5,8 +5,8 @@
 input, select, textarea {
     height: 39px;
     padding: 10px;
-    margin: 20px 0px;
-    
+    margin: 10px 0px 20px;
+    font-size: 12px;    
 }
 
 .form--btn{
@@ -34,4 +34,14 @@ input[type="file"]::file-selector-button{
 }
 input[type=file]{
  color:transparent;
+}
+
+select {
+    padding-right: 5px;
+}
+
+.custom-grid-width {
+  max-width: 1116px;
+  margin-left: auto;
+  margin-right: auto;
 }

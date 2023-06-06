@@ -5,15 +5,17 @@ import PaginatedItems from '../components/PaginatedItems'
 
 const Home = () => {
   return (
-    <div className="flex flex-row mt-16 justify-center mx-40 mb-16">
-      <div className="w-[451px] h-[659px] mr-3">
-        <Form />
+    <div className='custom-grid-width grid grid-cols-12 gap-6 my-16'>
+      {/* <div className=" mt-16 justify-center mx-40 mb-16"> */}
+        <div className="col-span-5 mr-3">
+          <Form />
+        </div>
+        <div className="bg-white col-span-7">
+          <Display />
+          <PaginatedItems />
+        </div>
       </div>
-      <div className='w-[642px] bg-white ml-3'>
-        <Display />
-        <PaginatedItems />
-      </div>
-    </div>
+    // </div>
   );
 }
 
