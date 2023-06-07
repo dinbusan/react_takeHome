@@ -36,7 +36,20 @@ console.log(data);
       <h2>Display Component</h2>
       <ul>
         {data.map((item) => (
-          <li key={item.id}>{item.title}</li>
+          <li key={item.id}>
+            <div>
+              <strong>Title:</strong> {item.title}
+            </div>
+            <div>
+              <strong>Created At:</strong> {item.created_at}
+            </div>
+            <div>
+              <strong>Category Name:</strong> {item.category.name}
+            </div>
+            <div>
+              <strong>Category Image URL:</strong> {item.category.img_url}
+            </div>
+          </li>
         ))}
       </ul>
     </div>
