@@ -11,15 +11,25 @@ const Display = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          'https://frontend-case-api.sbdev.nl/api/posts?page=1&perPage=10&sortBy=title&sortDirection=asc&searchPhrase=test ber&categoryId=1'
+          "https://frontend-case-api.sbdev.nl/api/posts?page=1&perPage=10&sortBy=title&sortDirection=asc&searchPhrase=test ber&categoryId=1"
         );
         setData(response.data.data);
-      } catch (error){
-        console.log('An error occurred:', error);
+      } catch (error) {
+        console.log("An error occurred:", error);
       }
     };
+
     fetchData();
-  }, [])
+
+    const intervalId = setInterval(() => {
+      fetchData(); // Fetch data periodically every 5 seconds
+    }, 5000);
+
+    return () => {
+      clearInterval(intervalId); // Clear the interval when the component unmounts
+    };
+  }, []);
+  
 console.log(data);
   return (
     <div>

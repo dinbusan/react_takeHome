@@ -94,6 +94,7 @@ const Form = () => {
               <option value={1}>Tech</option>
               <option value={2}>Nieuws</option>
               <option value={3}>Sports</option>
+              <option value={4}>Lokaal</option>
             </select>
             <p>{errors.category_id?.message}</p>
           </div>
