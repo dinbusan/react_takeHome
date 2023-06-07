@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const Form = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -14,39 +15,39 @@ const Form = () => {
     data.image = selectedImage;
     console.log(data);
     reset();
-    
-    try{
+
+    try {
       const formData = new FormData();
-      formData.append("title", data.name);
+      formData.append("title", data.title);
       formData.append("category_id", data.category_id);
       formData.append("content", data.content);
       formData.append("image", data.image, data.image.name);
 
-      const response = await fetch("https://frontend-case-api.sbdev.nl/api/posts", {
-        method: "POST",
-        body: formData,
-        headers: {
-          token: "pj11daaQRz7zUIH56B9Z",
-        },
-      });
+     const response = await axios.post(
+       "https://frontend-case-api.sbdev.nl/api/posts",
+       formData,
+       {
+         headers: {
+           token: "pj11daaQRz7zUIH56B9Z", // Move the token header here
+         },
+       }
+     );
+       console.log(response);
 
-      const responseData = await response.json();
-      console.log(response.status, responseData);
-
-      if (response.ok) {
+      if (response.status === 201) {
         console.log("Post created successfully!");
-      }else {
+      } else {
         console.log("Failed to create post.");
       }
-      }catch (error) {
-        console.log("An error occurred:", error);
+    } catch (error) {
+      console.log("An error occurred:", error);
     }
   };
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setSelectedImage(file);
-  }
+  };
 
   return (
     <div className="bg-white p-6">
@@ -90,9 +91,9 @@ const Form = () => {
               className="bg-neutral-50 italic text-gray-400 cursor-pointer"
             >
               <option value={0}>Geen categorie</option>
-              <option value={1}>Option 1</option>
-              <option value={2}>Option 2</option>
-              <option value={3}>Option 3</option>
+              <option value={1}>Tech</option>
+              <option value={2}>Nieuws</option>
+              <option value={3}>Sports</option>
             </select>
             <p>{errors.category_id?.message}</p>
           </div>
