@@ -40,9 +40,9 @@ input[type="file"]::file-selector-button{
     font-size: 10px;
     cursor: pointer;
 }
-input[type=file]{
+/* input[type=file]{
  color:transparent;
-}
+} */
 
 select {
     padding-right: 5px;
@@ -52,4 +52,9 @@ select {
   max-width: 1116px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.custom-card-dimensions {
+    height: 217px;
+    width: 285px
 }

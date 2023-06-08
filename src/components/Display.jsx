@@ -22,27 +22,49 @@ const Display = () => {
   }, []);
 
   console.log(data);
+
+  const formatDate = (dateString) => {
+    const options = {day: "numeric", month: "numeric", year: "numeric"};
+    const formattedDate = new Date(dateString).toLocaleDateString(undefined, options);
+    return formattedDate.replace(/\//g, "-")
+  }
   return (
-    <div>
-      <h2>Display Component</h2>
-      <ul>
-        {data.map((item) => (
-          <li key={item.id}>
-            <div>
-              <strong>Title:</strong> {item.title}
+    <div className="grid grid-cols-2">
+      {data.map((item) => (
+        <div key={item.id} className="mx-auto mb-4">
+          <div className="custom-card-dimensions shadow-lg bg-white rounded-b flex flex-col justify-between leading-normal">
+            <div
+              className="h-48 bg-black bg-cover rounded-t overflow-hidden flex"
+              style={{ backgroundImage: `url('${item.category.img_url}')` }}
+              title=""
+            >
+              <div className="flex text-xxs text-gray-100 italic mt-auto mx-auto pb-2 space-x-44">
+                <p>{formatDate(item.created_at)}</p>
+                <p>{item.category.name}</p>
+              </div>
             </div>
-            <div>
-              <strong>Created At:</strong> {item.created_at}
+            <div className="mb-8 p-4">
+              <div className="text-gray-900 font-bold text-xl mb-2">
+                {item.title}
+              </div>
+              <p className="text-gray-700 text-base">{item.content}</p>
+
+              {/* <div>
+                  <strong>Title:</strong> {item.title}
+                </div> */}
+              {/* <div>
+                  <strong>Created At:</strong> {item.created_at}
+                </div> */}
+              {/* <div>
+                  <strong>Category Name:</strong> {item.category.name}
+                </div> */}
+              {/* <div>
+                <strong>Category Image URL:</strong> {item.category.img_url}
+              </div> */}
             </div>
-            <div>
-              <strong>Category Name:</strong> {item.category.name}
-            </div>
-            <div>
-              <strong>Category Image URL:</strong> {item.category.img_url}
-            </div>
-          </li>
-        ))}
-      </ul>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
