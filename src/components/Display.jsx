@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from 'react'
-import axios from 'axios'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 axios.defaults.headers.common["token"] = "pj11daaQRz7zUIH56B9Z";
-
 
 const Display = () => {
   const [data, setData] = useState([]);
@@ -20,17 +19,9 @@ const Display = () => {
     };
 
     fetchData();
-
-    const intervalId = setInterval(() => {
-      fetchData(); // Fetch data periodically every 5 seconds
-    }, 5000);
-
-    return () => {
-      clearInterval(intervalId); // Clear the interval when the component unmounts
-    };
   }, []);
-  
-console.log(data);
+
+  console.log(data);
   return (
     <div>
       <h2>Display Component</h2>
@@ -54,6 +45,6 @@ console.log(data);
       </ul>
     </div>
   );
-}
+};
 
-export default Display
+export default Display;
