@@ -3,14 +3,14 @@ import axios from "axios";
 
 axios.defaults.headers.common["token"] = "pj11daaQRz7zUIH56B9Z";
 
-const Display = () => {
+const Display = ({ perPage }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://frontend-case-api.sbdev.nl/api/posts?page=1&perPage=10&sortBy=title&sortDirection=asc&searchPhrase=test ber&categoryId=1"
+          `https://frontend-case-api.sbdev.nl/api/posts?page=1&perPage=${perPage}&sortBy=title&sortDirection=asc&searchPhrase=test ber&categoryId=1`
         );
         setData(response.data.data);
       } catch (error) {
@@ -24,17 +24,20 @@ const Display = () => {
   console.log(data);
 
   const formatDate = (dateString) => {
-    const options = {day: "numeric", month: "numeric", year: "numeric"};
-    const formattedDate = new Date(dateString).toLocaleDateString(undefined, options);
-    return formattedDate.replace(/\//g, "-")
-  }
+    const options = { day: "numeric", month: "numeric", year: "numeric" };
+    const formattedDate = new Date(dateString).toLocaleDateString(
+      undefined,
+      options
+    );
+    return formattedDate.replace(/\//g, "-");
+  };
   return (
-    <div className="grid grid-cols-2">
+    <div className="flex flex-wrap">
       {data.map((item) => (
         <div key={item.id} className="mx-auto mb-4">
-          <div className="custom-card-dimensions shadow-lg bg-white rounded-b flex flex-col justify-between leading-normal">
+          <div className="custom-card-height shadow-lg bg-white rounded-b flex flex-col justify-between leading-normal">
             <div
-              className="h-48 bg-black bg-cover rounded-t overflow-hidden flex"
+              className="bg-black bg-cover rounded-t overflow-hidden flex"
               style={{ backgroundImage: `url('${item.category.img_url}')` }}
               title=""
             >
@@ -48,19 +51,6 @@ const Display = () => {
                 {item.title}
               </div>
               <p className="text-gray-700 text-base">{item.content}</p>
-
-              {/* <div>
-                  <strong>Title:</strong> {item.title}
-                </div> */}
-              {/* <div>
-                  <strong>Created At:</strong> {item.created_at}
-                </div> */}
-              {/* <div>
-                  <strong>Category Name:</strong> {item.category.name}
-                </div> */}
-              {/* <div>
-                <strong>Category Image URL:</strong> {item.category.img_url}
-              </div> */}
             </div>
           </div>
         </div>

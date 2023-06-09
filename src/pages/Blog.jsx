@@ -6,7 +6,7 @@ const Blog = () => {
   return (
     <div className="custom-grid-width grid grid-cols-12 gap-6 my-16">
       <div className='flex flex-col justify-center items-center'>
-        <Display />
+        <Display perPage={8}/>
         <PaginatedItems />
       </div>
     </div>
