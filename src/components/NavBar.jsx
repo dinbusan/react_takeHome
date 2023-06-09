@@ -17,7 +17,7 @@ const NavBar = () => {
     }, [location]);
 
   return (
-    <nav className="flex flex-col h-[208px] bg-slate-500 text-lg">
+    <nav className="flex flex-col justify-between h-[208px] bg-slate-500 text-lg">
       <div className="flex mx-40 pt-8 justify-between text-white">
         <NavLink to="/">
           <img className="w-[240px]" src={Logo} alt="Social Brothers Logo" />
@@ -37,7 +37,7 @@ const NavBar = () => {
           </NavLink>
         </ul>
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center text-white text-5xl font-semibold mb-10">
         <h1>{activeLink}</h1>
       </div>
     </nav>
