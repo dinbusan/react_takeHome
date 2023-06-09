@@ -13,7 +13,9 @@ const Home = () => {
       </div>
 
       <div className="col-span-7">
-        <Display perPage={4} />
+       
+          <Display width={"w-72"} perPage={4} />
+        
       </div>
       <PaginatedItems />
     </div>

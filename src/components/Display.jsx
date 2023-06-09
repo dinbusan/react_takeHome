@@ -3,7 +3,7 @@ import axios from "axios";
 
 axios.defaults.headers.common["token"] = "pj11daaQRz7zUIH56B9Z";
 
-const Display = ({ perPage }) => {
+const Display = ({ perPage, width }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -32,12 +32,12 @@ const Display = ({ perPage }) => {
     return formattedDate.replace(/\//g, "-");
   };
   return (
-    <div className="flex flex-wrap">
+    <div className="flex flex-wrap justify-evenly">
       {data.map((item) => (
-        <div key={item.id} className="mx-auto mb-4">
-          <div className="custom-card-height shadow-lg bg-white rounded-b flex flex-col justify-between leading-normal">
+        <div key={item.id} className={`mb-4 ${width}`}>
+          <div className="custom-card-height shadow-lg bg-white flex flex-col justify-between leading-normal">
             <div
-              className="bg-black bg-cover rounded-t overflow-hidden flex"
+              className="bg-black bg-cover h-1/3 overflow-hidden flex"
               style={{ backgroundImage: `url('${item.category.img_url}')` }}
               title=""
             >
