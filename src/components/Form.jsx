@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { createPost } from "./Api";
 
 const Form = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -17,38 +18,17 @@ const Form = () => {
     reset();
 
     try {
-      const formData = new FormData();
-      formData.append("title", data.title);
-      formData.append("category_id", data.category_id);
-      formData.append("content", data.content);
-      formData.append("image", data.image, data.image.name);
-
-     const response = await axios.post(
-       "https://frontend-case-api.sbdev.nl/api/posts",
-       formData,
-       {
-         headers: {
-           token: "pj11daaQRz7zUIH56B9Z", // Move the token header here
-         },
-       }
-     );
-       console.log(response);
-
-      if (response.status === 201) {
-        console.log("Post created successfully!");
-      } else {
-        console.log("Failed to create post.");
-      }
+      const response = await createPost(data, selectedImage);
+      console.log(response);
     } catch (error) {
       console.log("An error occurred:", error);
     }
-  };
-
+  }
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setSelectedImage(file);
   };
-
+  
   return (
     <div className="bg-white p-6">
       <form
