@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-
-axios.defaults.headers.common["token"] = "pj11daaQRz7zUIH56B9Z";
+import {getPosts} from './Api'
 
 const Display = ({ perPage, width }) => {
   const [data, setData] = useState([]);
@@ -9,10 +7,8 @@ const Display = ({ perPage, width }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `https://frontend-case-api.sbdev.nl/api/posts?page=1&perPage=${perPage}&sortBy=title&sortDirection=asc&searchPhrase=test ber&categoryId=1`
-        );
-        setData(response.data.data);
+        const posts = await getPosts(perPage);
+        setData(posts);
       } catch (error) {
         console.log("An error occurred:", error);
       }

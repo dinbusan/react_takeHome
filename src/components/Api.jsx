@@ -28,4 +28,14 @@ export const createPost = async (data, selectedImage) => {
   }
 };
 
-
+export const getPosts = async (perPage) => {
+  try {
+    const response = await axios.get(
+      `https://frontend-case-api.sbdev.nl/api/posts?page=1&perPage=${perPage}&sortBy=title&sortDirection=asc&searchPhrase=test ber&categoryId=1`
+    );
+    return response.data.data;
+  } catch (error) {
+    console.log("An error occurred:", error);
+    throw error;
+  }
+};
