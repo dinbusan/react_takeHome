@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
-import {getPosts} from './Api'
+import { getPosts } from "./Api";
+import ReactPaginate from "react-paginate";
 
 const Display = ({ perPage, width }) => {
   const [data, setData] = useState([]);
+  const [itemOffset, setItemOffset] = useState(0);
+  const [page, setPage] = useState(1);
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const posts = await getPosts(perPage);
+        const posts = await getPosts(perPage, page);
         setData(posts);
       } catch (error) {
         console.log("An error occurred:", error);
@@ -15,7 +19,36 @@ const Display = ({ perPage, width }) => {
     };
 
     fetchData();
-  }, []);
+  }, [page]);
+
+  const endOffset = itemOffset + perPage;
+  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+  const currentItems = data.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(data.length / perPage);
+
+  const handlePageClick = (event) => {
+  const selectedPage = event.selected + 1;
+    setPage(selectedPage);
+        
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    const itemOffset = (page - 1) * perPage;
+    const currentItems = data.slice(itemOffset, itemOffset + perPage);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const posts = await getPosts(perPage, page);
+        setData(posts);
+      } catch (error) {
+        console.log("An error occurred:", error);
+      }
+    };
+
+    fetchData();
+  }, [page]);
 
   console.log(data);
 
@@ -51,6 +84,15 @@ const Display = ({ perPage, width }) => {
           </div>
         </div>
       ))}
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel="next >"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={pageCount}
+        previousLabel="< previous"
+        renderOnZeroPageCount={null}
+      />
     </div>
   );
 };
