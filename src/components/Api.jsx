@@ -32,9 +32,8 @@ export const createPost = async (data, selectedImage) => {
 export const getPosts = async (perPage, page) => {
   try {
     const response = await axios.get(
-      `https://frontend-case-api.sbdev.nl/api/posts?page=${page}&sortBy=created_at&sortDirection=desc`
+      `https://frontend-case-api.sbdev.nl/api/posts?page=${page}&perPage=${perPage}&sortBy=created_at&sortDirection=desc`
     );
-    //&perPage=${perPage}
     return response.data.data;
   } catch (error) {
     console.log("An error occurred:", error);

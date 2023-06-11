@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { getPosts } from "./Api";
-import ReactPaginate from "react-paginate";
 
 const Display = ({ perPage, width }) => {
   const [data, setData] = useState([]);
-  const [itemOffset, setItemOffset] = useState(0);
   const [page, setPage] = useState(1);
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const posts = await getPosts(perPage, page);
-        setData(posts);
+        if (page === 1) {
+          setData(posts);
+        } else {
+          setData((prevData) => [...prevData, ...posts]);
+        }
       } catch (error) {
         console.log("An error occurred:", error);
       }
@@ -21,36 +22,27 @@ const Display = ({ perPage, width }) => {
     fetchData();
   }, [page]);
 
-  const endOffset = itemOffset + perPage;
-  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  const currentItems = data.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(data.length / perPage);
+  const handleAddMore = () => {
+        setPage((prevPage) => prevPage + 1);
 
-  const handlePageClick = (event) => {
-  const selectedPage = event.selected + 1;
-    setPage(selectedPage);
-        
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
-    const itemOffset = (page - 1) * perPage;
-    const currentItems = data.slice(itemOffset, itemOffset + perPage);
+    // setPage((prevCount) => prevCount + perPage);
+    // setItemOffset((prevOffset) => prevOffset + perPage);
   };
+  
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const posts = await getPosts(perPage, page);
-        setData(posts);
-      } catch (error) {
-        console.log("An error occurred:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const posts = await getPosts(perPage, page);
+  //       setData(posts);
+  //     } catch (error) {
+  //       console.log("An error occurred:", error);
+  //     }
+  //   };
 
-    fetchData();
-  }, [page]);
+  //   fetchData();
+  // }, [page]);
 
-  console.log(data);
 
   const formatDate = (dateString) => {
     const options = { day: "numeric", month: "numeric", year: "numeric" };
@@ -62,8 +54,8 @@ const Display = ({ perPage, width }) => {
   };
   return (
     <div className="flex flex-wrap justify-evenly">
-      {data.map((item) => (
-        <div key={item.id} className={`mb-4 ${width}`}>
+      {data.map((item, index) => (
+        <div key={index} className={`mb-4 ${width}`}>
           <div className="custom-card-height shadow-lg bg-white flex flex-col justify-between leading-normal">
             <div
               className="bg-black bg-cover h-1/3 overflow-hidden flex"
@@ -84,15 +76,12 @@ const Display = ({ perPage, width }) => {
           </div>
         </div>
       ))}
-      <ReactPaginate
-        breakLabel="..."
-        nextLabel="next >"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        pageCount={pageCount}
-        previousLabel="< previous"
-        renderOnZeroPageCount={null}
-      />
+      <button
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+        onClick={handleAddMore}
+      >
+        Add More
+      </button>
     </div>
   );
 };
