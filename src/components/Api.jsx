@@ -17,6 +17,7 @@ export const createPost = async (data, selectedImage) => {
 
     if (response.status === 201) {
       console.log("Post created successfully!");
+      return response.data;
     } else {
       console.log("Failed to create post.");
     }

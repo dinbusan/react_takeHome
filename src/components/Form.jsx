@@ -3,7 +3,8 @@ import { useForm } from "react-hook-form";
 import { createPost } from "./Api";
 
 const Form = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedImageURL, setSelectedImageURL] = useState(null); 
   const {
     register,
     handleSubmit,
@@ -19,6 +20,7 @@ const Form = () => {
     try {
       const response = await createPost(data, selectedImage);
       console.log(response);
+      setSelectedImageURL(response.img_url);
     } catch (error) {
       console.log("An error occurred:", error);
     }
@@ -88,6 +90,7 @@ const Form = () => {
               className="bg-neutral-50"
               onChange={handleImageChange}
             />
+            {selectedImageURL && <img src={selectedImageURL} alt="" />}
             <p>{errors.image?.message}</p>
           </div>
           <div>

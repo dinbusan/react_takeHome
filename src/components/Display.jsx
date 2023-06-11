@@ -34,7 +34,7 @@ const Display = ({ perPage, width }) => {
           <div className="custom-card-height shadow-lg bg-white flex flex-col justify-between leading-normal">
             <div
               className="bg-black bg-cover h-1/3 overflow-hidden flex"
-              style={{ backgroundImage: `url('${item.category.img_url}')` }}
+              style={{ backgroundImage: `url('${item.img_url}')` }}
               title=""
             >
               <div className="flex text-xxs text-gray-100 italic mt-auto mx-auto pb-2 space-x-44">
