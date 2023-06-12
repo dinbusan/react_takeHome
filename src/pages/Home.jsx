@@ -17,7 +17,6 @@ const Home = () => {
           <Display width={"w-72"} perPage={4} />
         
       </div>
-      <PaginatedItems />
     </div>
   );
 }
