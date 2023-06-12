@@ -4,6 +4,7 @@ import { getPosts } from "./Api";
 const Display = ({ perPage, width }) => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
+  
 
   useEffect(() => {
     const fetchData = async () => {
