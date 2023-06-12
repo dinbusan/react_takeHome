@@ -1,7 +1,6 @@
 import React from 'react'
-import Display from '../components/Display'
 import PaginatedItems from '../components/PaginatedItems'
-import ExtraDisplay from '../components/extraDisplay'
+import ExtraDisplay from '../components/extraDisplay';
 
 const Blog = () => {
   return (

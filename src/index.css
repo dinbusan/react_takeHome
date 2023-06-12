@@ -57,3 +57,9 @@ select {
 .custom-card-height {
     height: 217px;
 }
+
+.active {
+  background-color: #bebebe;
+  border-radius: 50%;
+  padding: 0px 5px;
+}

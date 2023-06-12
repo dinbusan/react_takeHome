@@ -4,6 +4,7 @@ import { getPosts } from "./Api";
 const Display = ({ perPage, width }) => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -71,9 +72,7 @@ const Display = ({ perPage, width }) => {
               <div className="text-gray-900 font-bold text-xl mb-2 text-elipsis truncate">
                 {item.title}
               </div>
-              <p className="text-gray-700 text-base text-ellipsis truncate">
-                {item.content}
-              </p>
+              <p className="text-gray-700 text-base text-elipsis truncate">{item.content}</p>
             </div>
           </div>
         </div>

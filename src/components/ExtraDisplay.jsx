@@ -4,14 +4,15 @@ import ReactPaginate from "react-paginate";
 
 const ExtraDisplay = ({ perPage, width }) => {
   const [data, setData] = useState([]);
-  const [itemOffset, setItemOffset] = useState(0);
   const [page, setPage] = useState(1);
-
+  const [currentData, setCurrentData] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
+  const [dataOffset, setDataOffset] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const posts = await getPosts(perPage, page);
+        const posts = await getPosts(1000, page);
         setData(posts);
       } catch (error) {
         console.log("An error occurred:", error);
@@ -19,35 +20,20 @@ const ExtraDisplay = ({ perPage, width }) => {
     };
 
     fetchData();
-  }, [page]);
+  }, []);
 
-  const endOffset = itemOffset + perPage;
-  console.log(`Loading data from ${itemOffset} to ${endOffset}`);
-  const currentItems = data.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(data.length / perPage);
+  useEffect(() => {
+    const endOffset = dataOffset + 8;
+    setCurrentData(data.slice(dataOffset, endOffset));
+    setPageCount(Math.ceil(data.length / 9));
+  }, [data, dataOffset]);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * perPage) % data.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
-    setItemOffset(newOffset);
+    const newOffset = (event.selected * 8) % data.length;
+    setDataOffset(newOffset);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const posts = await getPosts(perPage, page);
-        setData(posts);
-      } catch (error) {
-        console.log("An error occurred:", error);
-      }
-    };
-
-    fetchData();
-  }, [page]);
-
-  console.log(currentItems);
+  console.log(data);
 
   const formatDate = (dateString) => {
     const options = { day: "numeric", month: "numeric", year: "numeric" };
@@ -57,39 +43,58 @@ const ExtraDisplay = ({ perPage, width }) => {
     );
     return formattedDate.replace(/\//g, "-");
   };
+
   return (
-    <div className="flex flex-wrap justify-evenly">
-      {currentItems.map((item) => (
-        <div key={item.id} className={`mb-4 ${width}`}>
-          <div className="custom-card-height shadow-lg bg-white flex flex-col justify-between leading-normal">
-            <div
-              className="bg-black bg-cover h-1/3 overflow-hidden flex"
-              style={{ backgroundImage: `url('${item.img_url}')` }}
-              title=""
-            >
-              <div className="flex text-xxs text-gray-100 italic mt-auto mx-auto pb-2 space-x-44">
-                <p>{formatDate(item.created_at)}</p>
-                <p>{item.category.name}</p>
+    <div>
+      <div className="flex flex-wrap justify-evenly">
+        {currentData.map((item) => (
+          <div key={item.id} className={`mb-4 ${width}`}>
+            <div className="custom-card-height shadow-lg bg-white flex flex-col justify-between leading-normal">
+              <div
+                className="bg-black bg-cover h-1/3 overflow-hidden flex"
+                style={{ backgroundImage: `url('${item.img_url}')` }}
+                title=""
+              >
+                <div className="flex text-xxs text-gray-100 italic mt-auto mx-auto pb-2 space-x-44">
+                  <p>{formatDate(item.created_at)}</p>
+                  <p>{item.category.name}</p>
+                </div>
               </div>
-            </div>
-            <div className="mb-8 p-4">
-              <div className="text-gray-900 font-bold text-xl mb-2 text-elipsis truncate">
-                {item.title}
+              <div className="mb-8 p-4">
+                <div className="text-gray-900 font-bold text-xl mb-2 text-elipsis truncate">
+                  {item.title}
+                </div>
+                <p className="text-gray-700 text-base text-elipsis truncate">
+                  {item.content}
+                </p>
               </div>
-              <p className="text-gray-700 text-base text-elipsis truncate">{item.content}</p>
             </div>
           </div>
-        </div>
-      ))}
-     <ReactPaginate
-        breakLabel="..."
-        nextLabel="next >"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        pageCount={pageCount}
-        previousLabel="< previous"
-        renderOnZeroPageCount={null}
-      />
+        ))}
+      </div>
+      <div className="flex justify-center">
+        <ReactPaginate
+        className="flex space-x-3"
+          breakLabel="..."
+          nextLabel="next >"
+          onPageChange={handlePageClick}
+          // onClick={handlePageClick}
+          pageRangeDisplayed={3}
+          pageCount={pageCount}
+          previousLabel="< previous"
+          renderOnZeroPageCount={null}
+          // breakClassName={"page-item"}
+          // breakLinkClassName={"page-link"}
+          // containerClassName={"pagination"}
+          // pageClassName={"page-item"}
+          // pageLinkClassName={"page-link"}
+          // previousClassName={"page-item"}
+          // previousLinkClassName={"page-link"}
+          // nextClassName={"page-item"}
+          // nextLinkClassName={"page-link"}
+          activeClassName={"active"}
+        />
+      </div>
     </div>
   );
 };
