@@ -58,8 +58,10 @@ select {
     height: 217px;
 }
 
-.active {
+.active-page {
   background-color: #bebebe;
   border-radius: 50%;
   padding: 0px 5px;
+  transform: scale(1.2);
+  font-weight: 700;
 }

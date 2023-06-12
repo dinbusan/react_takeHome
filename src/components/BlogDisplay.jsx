@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getPosts } from "./Api";
 import ReactPaginate from "react-paginate";
 
-const ExtraDisplay = ({ perPage, width }) => {
+const BlogDisplay = ({ perPage, width }) => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [currentData, setCurrentData] = useState([]);
@@ -74,14 +74,16 @@ const ExtraDisplay = ({ perPage, width }) => {
       </div>
       <div className="flex justify-center">
         <ReactPaginate
-        className="flex space-x-3"
+          className="flex space-x-3 text-xs"
           breakLabel="..."
-          nextLabel="next >"
+          nextLabel={
+            <span className="text-orange">Volgende pagina --&gt;</span>
+          }
           onPageChange={handlePageClick}
           // onClick={handlePageClick}
           pageRangeDisplayed={3}
           pageCount={pageCount}
-          previousLabel="< previous"
+          previousLabel="<-- previous"
           renderOnZeroPageCount={null}
           // breakClassName={"page-item"}
           // breakLinkClassName={"page-link"}
@@ -92,11 +94,11 @@ const ExtraDisplay = ({ perPage, width }) => {
           // previousLinkClassName={"page-link"}
           // nextClassName={"page-item"}
           // nextLinkClassName={"page-link"}
-          activeClassName={"active"}
+          activeClassName={"active-page"}
         />
       </div>
     </div>
   );
 };
 
-export default ExtraDisplay;
+export default BlogDisplay;
