@@ -33,8 +33,6 @@ const BlogDisplay = ({ perPage, width }) => {
     setDataOffset(newOffset);
   };
 
-  console.log(data);
-
   const formatDate = (dateString) => {
     const options = { day: "numeric", month: "numeric", year: "numeric" };
     const formattedDate = new Date(dateString).toLocaleDateString(
@@ -85,15 +83,6 @@ const BlogDisplay = ({ perPage, width }) => {
           pageCount={pageCount}
           previousLabel="<-- previous"
           renderOnZeroPageCount={null}
-          // breakClassName={"page-item"}
-          // breakLinkClassName={"page-link"}
-          // containerClassName={"pagination"}
-          // pageClassName={"page-item"}
-          // pageLinkClassName={"page-link"}
-          // previousClassName={"page-item"}
-          // previousLinkClassName={"page-link"}
-          // nextClassName={"page-item"}
-          // nextLinkClassName={"page-link"}
           activeClassName={"active-page"}
         />
       </div>

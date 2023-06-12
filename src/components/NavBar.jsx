@@ -8,7 +8,6 @@ const NavBar = () => {
     
     useEffect(() => {
       const pathname = location.pathname;
-      // Update activeLink based on the current route
       if (pathname === "/") {
         setActiveLink("");
       } else if (pathname === "/blog") {

@@ -25,25 +25,8 @@ const Display = ({ perPage, width }) => {
 
   const handleAddMore = () => {
         setPage((prevPage) => prevPage + 1);
-
-    // setPage((prevCount) => prevCount + perPage);
-    // setItemOffset((prevOffset) => prevOffset + perPage);
   };
   
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const posts = await getPosts(perPage, page);
-  //       setData(posts);
-  //     } catch (error) {
-  //       console.log("An error occurred:", error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, [page]);
-
 
   const formatDate = (dateString) => {
     const options = { day: "numeric", month: "numeric", year: "numeric" };
